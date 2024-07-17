@@ -49,5 +49,22 @@ jobs:
           python -m pip install poetry
 
       - name: Install project
+        working-directory: src/authservice
         run: |
           poetry install
+
+      - name: Run migrations
+        working-directory: src/authservice
+        run: |
+          poetry run alembic upgrade head
+
+      - name: Run tests
+        working-directory: src/authservice
+        run: |
+          poetry run pytest
+
+      - name: Run pylint
+        working-directory: src/authservice
+        run: |
+          poetry run pylint ./src
+          
