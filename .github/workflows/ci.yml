@@ -27,7 +27,7 @@ jobs:
     steps:
       - name: Check PostgreSQL connection
         run: |
-          sudo apgt-get install -y postgresql-client
+          sudo apt-get install -y postgresql-client
           psql -h localhost -U postgres -c 'SELECT version();'
 
       - name: Check out the repository code
