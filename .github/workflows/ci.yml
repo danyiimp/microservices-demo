@@ -91,9 +91,9 @@ jobs:
 
       - name: Build Docker image
         working-directory: src/authservice
-        run: docker build -t authservice:${GITHUB_REF_NAME} .
+        run: docker build -t danyiimp/authservice:${GITHUB_REF_NAME} .
 
       - name: Push image to Docker
-        run: docker push authservice:${GITHUB_REF_NAME}
+        run: docker push danyiimp/authservice:${GITHUB_REF_NAME}
 
         
