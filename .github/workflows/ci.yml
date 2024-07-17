@@ -24,7 +24,14 @@ jobs:
         ports:
           - 5432:5432
 
-    steps:
+    env:
+      DB_URL: ${{ vars.DB_URL }}
+      DB_URL_TEST: ${{ vars.DB_URL_TEST }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      RESET_PASSWORD_TOKEN_SECRET: ${{ secrets.RESET_PASSWORD_TOKEN_SECRET }}
+      VERIFICATION_TOKEN_SECRET: ${{ secrets.VERIFICATION_TOKEN_SECRET }}
+
+    steps:  
       - name: Check PostgreSQL connection
         run: |
           sudo apt-get install -y postgresql-client
