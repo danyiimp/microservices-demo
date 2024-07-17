@@ -3,7 +3,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     DB_URL: str
-    DB_URL_TEST: str
+    DB_URL_TEST: str = None
 
     RESET_PASSWORD_TOKEN_SECRET: str
     RESET_PASSWORD_TOKEN_LIFETIME_SECONDS: int = 3600

@@ -7,3 +7,4 @@ __pycache__
 verificationservice
 scripts/
 docker-compose.yml
+secret.yaml
