@@ -76,24 +76,24 @@ jobs:
         run: |
           poetry run pylint ./src
 
-  build_authservice:
-    runs-on: ubuntu-latest
+  # build_authservice:
+  #   runs-on: ubuntu-latest
 
-    needs: [test_authservice]
+  #   needs: [test_authservice]
 
-    environment: deployment
+  #   environment: deployment
 
-    steps:
-      - name: Login to Docker
-        run: echo ${{ secrets.DOCKER_TOKEN }} | docker login -u ${{ secrets.DOCKER_LOGIN }} --password-stdin
+  #   steps:
+  #     - name: Login to Docker
+  #       run: echo ${{ secrets.DOCKER_TOKEN }} | docker login -u ${{ secrets.DOCKER_LOGIN }} --password-stdin
         
-      - uses: actions/checkout@v4
+  #     - uses: actions/checkout@v4
 
-      - name: Build Docker image
-        working-directory: src/authservice
-        run: docker build -t danyiimp/authservice:${GITHUB_REF_NAME} .
+  #     - name: Build Docker image
+  #       working-directory: src/authservice
+  #       run: docker build -t danyiimp/authservice:${GITHUB_REF_NAME} .
 
-      - name: Push image to Docker
-        run: docker push danyiimp/authservice:${GITHUB_REF_NAME}
+  #     - name: Push image to Docker
+  #       run: docker push danyiimp/authservice:${GITHUB_REF_NAME}
 
         

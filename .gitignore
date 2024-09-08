@@ -4,7 +4,6 @@ __pycache__
 .mypy_cache
 .pytest_cache
 .vscode
-verificationservice
 scripts/
-docker-compose.yml
 secret.yaml
+configmap.yaml

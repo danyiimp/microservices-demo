@@ -20,7 +20,9 @@ class MyBaseUserDatabase(BaseUserDatabase[UP, models.ID]):
         raise NotImplementedError()
 
 
-class MySQLAlchemyUserDatabase(SQLAlchemyUserDatabase[UP, models.ID], MyBaseUserDatabase[UP, models.ID]):
+class MySQLAlchemyUserDatabase(
+    SQLAlchemyUserDatabase[UP, models.ID], MyBaseUserDatabase[UP, models.ID]
+):
     async def get_by_username(self, username: str) -> Optional[UP]:
         stmt = select(self.user_table).where(
             self.user_table.username == username
@@ -82,13 +84,17 @@ class MyBaseUserManager(BaseUserManager[UP, models.ID]):
             self.password_helper.hash(credentials.password)
             return None
 
-        verified, updated_password_hash = self.password_helper.verify_and_update(
-            credentials.password, user.hashed_password
+        verified, updated_password_hash = (
+            self.password_helper.verify_and_update(
+                credentials.password, user.hashed_password
+            )
         )
         if not verified:
             return None
 
         if updated_password_hash is not None:
-            await self.user_db.update(user, {"hashed_password": updated_password_hash})
+            await self.user_db.update(
+                user, {"hashed_password": updated_password_hash}
+            )
 
         return user

@@ -1,2 +1,4 @@
 .env
+configmap.yaml
+secret.yaml
 __pycache__

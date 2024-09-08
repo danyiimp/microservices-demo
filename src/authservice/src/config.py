@@ -13,12 +13,9 @@ class Settings(BaseSettings):
 
     JWT_SECRET: str
     JWT_LIFETIME_SECONDS: int = 3600
-    TOKEN_URL: str = '/auth/jwt/login'
+    TOKEN_URL: str = "/auth/jwt/login"
 
-    model_config = SettingsConfigDict(
-        env_file='.env',
-        extra='allow'
-    )
+    model_config = SettingsConfigDict(env_file=".env", extra="allow")
 
 
 settings = Settings()
