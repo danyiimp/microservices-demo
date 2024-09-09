@@ -4,6 +4,8 @@ __pycache__
 .mypy_cache
 .pytest_cache
 .vscode
+.coverage
 scripts/
 secret.yaml
 configmap.yaml
+htmlcov/

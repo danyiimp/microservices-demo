@@ -5,8 +5,11 @@ from email.message import EmailMessage
 from src.config import settings
 
 
-TOKEN_EMAIL_SUBJECT = "Authentication Token"
-TOKEN_EMAIL_BODY = "Your authentication token is: {token}"
+VERIFICATION_TOKEN_SUBJECT = "Verification Token"
+VERIFICATION_TOKEN_BODY = "Your verification token is: {token}"
+
+RESET_TOKEN_SUBJECT = "Password reset Token"
+RESET_TOKEN_BODY = "Your password reset token is: {token}"
 
 
 def build_message(subject: str, body: str) -> EmailMessage:

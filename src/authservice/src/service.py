@@ -14,6 +14,10 @@ from .database import get_async_session
 from .config import settings
 from .user_manager import MyBaseUserManager, MySQLAlchemyUserDatabase
 from .services.notification.service import send_token
+from .services.notification.config import (
+    RESET_TOKEN_URL,
+    VERIFICATION_TOKEN_URL,
+)
 
 
 auth_backend: AuthenticationBackend = AuthenticationBackend(
@@ -44,15 +48,12 @@ class UserManager(IntegerIDMixin, MyBaseUserManager[models.User, int]):
     async def on_after_request_verify(
         self, user: models.User, token: str, request: Request | None = None
     ):
-        await send_token(token, user.email)
-        print(
-            f"Verification requested for user {user.id}. Verification token: {token}"  # noqa
-        )
+        await send_token(VERIFICATION_TOKEN_URL, token, user.email)
 
     async def on_after_forgot_password(
         self, user: models.User, token: str, request: Request | None = None
     ):
-        print(f"User {user.id} has forgot their password. Reset token: {token}")
+        await send_token(RESET_TOKEN_URL, token, user.email)
 
 
 async def get_user_db(

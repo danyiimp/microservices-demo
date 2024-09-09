@@ -1,11 +1,10 @@
 import aiohttp
-from src.services.notification.config import SEND_TOKEN_URL
 
 
-async def send_token(token: str, email: str):
+async def send_token(url: str, token: str, email: str):
     async with aiohttp.ClientSession() as session:
         async with session.post(
-            SEND_TOKEN_URL,
+            url,
             json={
                 "token": token,
                 "email": email,

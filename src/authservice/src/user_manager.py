@@ -56,17 +56,15 @@ class MyBaseUserManager(BaseUserManager[UP, models.ID]):
         :raises UserNotExists: The user does not exist.
         :return: A user.
         """
+        user = None
         try:
-            return await self.get_by_username(credentials)
+            user = await self.get_by_username(credentials)
         except exceptions.UserNotExists:
-            pass
-
-        try:
-            return await self.user_db.get_by_email(credentials)
-        except exceptions.UserNotExists:
-            pass
-
-        raise exceptions.UserNotExists()
+            user = await self.user_db.get_by_email(credentials)
+        finally:
+            if user is None:
+                raise exceptions.UserNotExists()
+            return user
 
     async def authenticate(
         self, credentials: OAuth2PasswordRequestForm
