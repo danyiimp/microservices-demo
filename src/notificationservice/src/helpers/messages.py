@@ -11,6 +11,9 @@ VERIFICATION_TOKEN_BODY = "Your verification token is: {token}"
 RESET_TOKEN_SUBJECT = "Password reset Token"
 RESET_TOKEN_BODY = "Your password reset token is: {token}"
 
+RESERVATION_SUBJECT = "Reservation"
+RESERVATION_BODY = "Your reservation {date} from {time_start} to {time_end}"
+
 
 def build_message(subject: str, body: str) -> EmailMessage:
     message = EmailMessage()
